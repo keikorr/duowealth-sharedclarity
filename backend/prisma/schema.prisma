@@ -1,0 +1,167 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id                String             @id @default(uuid())
+  email             String             @unique
+  name              String
+  passwordHash      String
+  avatarUrl         String?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  households        UserHousehold[]
+  paidTransactions  Transaction[]      @relation("PaidByUser")
+  goalContributions GoalContribution[]
+}
+
+model Household {
+  id           String          @id @default(uuid())
+  name         String
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  members      UserHousehold[]
+  accounts     Account[]
+  cards        Card[]
+  categories   Category[]
+  transactions Transaction[]
+  budgets      Budget[]
+  goals        Goal[]
+  investments  Investment[]
+  scenarios    Scenario[]
+}
+
+model UserHousehold {
+  id          String    @id @default(uuid())
+  userId      String
+  householdId String
+  role        String    @default("member") // owner, member, partner
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  household   Household @relation(fields: [householdId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, householdId])
+}
+
+model Account {
+  id          String    @id @default(uuid())
+  householdId String
+  name        String    // ex: Banco do Brasil, Nubank Reserva
+  type        String    // checking, savings, investment
+  balance     Float     @default(0.0)
+  household   Household @relation(fields: [householdId], references: [id], onDelete: Cascade)
+  createdAt   DateTime  @default(now())
+}
+
+model Card {
+  id           String        @id @default(uuid())
+  householdId  String
+  name         String        // ex: Nubank Roxinho, Inter Black
+  bank         String
+  lastFour     String?
+  closingDay   Int
+  dueDay       Int
+  creditLimit  Float
+  currentBill  Float         @default(0.0)
+  isPaid       Boolean       @default(false)
+  household    Household     @relation(fields: [householdId], references: [id], onDelete: Cascade)
+  transactions Transaction[]
+  createdAt    DateTime      @default(now())
+}
+
+model Category {
+  id           String        @id @default(uuid())
+  householdId  String?
+  name         String        // ex: Moradia, Alimentação, Transporte, Lazer, Assinaturas, Outros
+  icon         String        // Material Symbol icon name
+  color        String        // hex color
+  household    Household?    @relation(fields: [householdId], references: [id], onDelete: Cascade)
+  transactions Transaction[]
+  budgets      Budget[]
+}
+
+model Transaction {
+  id            String    @id @default(uuid())
+  householdId   String
+  categoryId    String
+  cardId        String?
+  paidById      String?
+  description   String
+  amount        Float
+  type          String    // fixed, variable, income
+  paidByRole    String    // userA, userB, joint
+  splitRatioA   Float     @default(50.0) // % paid by partner A
+  splitRatioB   Float     @default(50.0) // % paid by partner B
+  paymentMethod String    // Pix, CreditCard, Cash
+  status        String    @default("paid") // paid, pending
+  date          DateTime  @default(now())
+  monthRef      String    // YYYY-MM
+  household     Household @relation(fields: [householdId], references: [id], onDelete: Cascade)
+  category      Category  @relation(fields: [categoryId], references: [id])
+  card          Card?     @relation(fields: [cardId], references: [id], onDelete: SetNull)
+  paidBy        User?     @relation("PaidByUser", fields: [paidById], references: [id], onDelete: SetNull)
+  createdAt     DateTime  @default(now())
+}
+
+model Budget {
+  id          String    @id @default(uuid())
+  householdId String
+  categoryId  String
+  amount      Float
+  monthRef    String    // YYYY-MM
+  household   Household @relation(fields: [householdId], references: [id], onDelete: Cascade)
+  category    Category  @relation(fields: [categoryId], references: [id])
+}
+
+model Goal {
+  id            String             @id @default(uuid())
+  householdId   String
+  title         String
+  icon          String
+  targetAmount  Float
+  currentAmount Float              @default(0.0)
+  deadline      DateTime
+  category      String             // Reserva, Viagem, Imóvel, Veículo, etc.
+  status        String             @default("active") // active, completed, archived
+  household     Household          @relation(fields: [householdId], references: [id], onDelete: Cascade)
+  contributions GoalContribution[]
+  createdAt     DateTime           @default(now())
+}
+
+model GoalContribution {
+  id        String   @id @default(uuid())
+  goalId    String
+  userId    String
+  amount    Float
+  date      DateTime @default(now())
+  goal      Goal     @relation(fields: [goalId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Investment {
+  id           String   @id @default(uuid())
+  householdId  String
+  ticker       String
+  name         String
+  category     String   // fixed_income, stocks, crypto, reits
+  quantity     Float
+  avgPrice     Float
+  currentPrice Float
+  monthlyReturnFloat Float @default(0.0) // % monthly return
+  household    Household @relation(fields: [householdId], references: [id], onDelete: Cascade)
+  updatedAt    DateTime @updatedAt
+}
+
+model Scenario {
+  id                  String   @id @default(uuid())
+  householdId         String
+  name                String
+  monthlyContribution Float
+  expectedReturnRate  Float    // percentage per year e.g. 10.0
+  household           Household @relation(fields: [householdId], references: [id], onDelete: Cascade)
+  createdAt           DateTime @default(now())
+}

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(51, 65, 85, 1);
+        }
+        .progress-gradient {
+            background: linear-gradient(90deg, #0566d9 0%, #4edea3 100%);
+        }
+        .tap-highlight-transparent {
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#00422b",
+                        "secondary": "#adc6ff",
+                        "on-primary-fixed-variant": "#005236",
+                        "primary-fixed": "#6ffbbe",
+                        "surface-container-high": "#1c2b3c",
+                        "surface-tint": "#4edea3",
+                        "on-secondary": "#002e6a",
+                        "on-primary-fixed": "#002113",
+                        "background": "#051424",
+                        "tertiary-fixed": "#e9ddff",
+                        "surface-dim": "#051424",
+                        "tertiary-container": "#b090ff",
+                        "secondary-container": "#0566d9",
+                        "surface-container": "#122131",
+                        "secondary-fixed": "#d8e2ff",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-error": "#690005",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed-dim": "#d0bcff",
+                        "primary-fixed-dim": "#4edea3",
+                        "primary": "#4edea3",
+                        "surface": "#051424",
+                        "outline": "#86948a",
+                        "inverse-primary": "#006c49",
+                        "outline-variant": "#3c4a42",
+                        "inverse-on-surface": "#233143",
+                        "surface-bright": "#2c3a4c",
+                        "surface-container-low": "#0d1c2d",
+                        "on-secondary-container": "#e6ecff",
+                        "inverse-surface": "#d4e4fa",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#3c0091",
+                        "on-tertiary-fixed-variant": "#5516be",
+                        "on-secondary-fixed": "#001a42",
+                        "tertiary": "#d0bcff",
+                        "primary-container": "#10b981",
+                        "surface-variant": "#273647",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-tertiary-container": "#4600a7",
+                        "on-surface-variant": "#bbcabf",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed": "#23005c",
+                        "on-primary": "#003824",
+                        "on-background": "#d4e4fa",
+                        "surface-container-lowest": "#010f1f",
+                        "on-surface": "#d4e4fa",
+                        "surface-container-highest": "#273647"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "stack-sm": "8px",
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "stack-md": "16px",
+                        "gutter": "24px",
+                        "stack-lg": "32px",
+                        "margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-sm": ["JetBrains Mono"],
+                        "display-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["JetBrains Mono"],
+                        "display-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen pb-24 md:pb-0 md:pl-64">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface-container/80 dark:bg-surface-container/80 backdrop-blur-xl border-b border-outline-variant">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md font-bold text-primary">SharedClarity</span>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="p-2 hover:bg-surface-variant/50 transition-colors rounded-full material-symbols-outlined text-on-surface-variant">notifications</button>
+<button class="p-2 hover:bg-surface-variant/50 transition-colors rounded-full material-symbols-outlined text-on-surface-variant">settings</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary/30">
+<img class="w-full h-full object-cover" data-alt="A professional and modern profile avatar showing a stylish couple in a shared financial app environment. The aesthetic is minimalist with a deep slate background and soft teal lighting accents, symbolizing shared success and clarity in wealth management." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeWU_MKHgXbFAWmqZK-6U5B0n36AmWr_fNOKF7uzApmmDDXeiuiqkhLXWW5J37hD2WewXDQaeWv9B8AvbNucixbzHZvqOcUgSCIcjkPrioY-zk353UCJFveCwdxQrY69sK5vEtAzymfBewVxTOQgFnIqicOJcrgjhIjxLpF-13Vvw0Pz2DLNWDXnxV2q0t6LxmBGJt-n_c-VymNH7k9_R3Vttvx1vEKOdzX-oJCi8ucS3u-zYPMu42"/>
+</div>
+</div>
+</header>
+<!-- Side Navigation Bar (Desktop) -->
+<nav class="fixed left-0 top-0 h-full hidden md:flex flex-col p-4 w-64 bg-surface-container-low border-r border-outline-variant z-40 pt-20">
+<div class="mb-stack-lg px-2">
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Our Wealth</h2>
+<p class="font-label-md text-label-md text-on-surface-variant">Shared Clarity</p>
+</div>
+<div class="flex flex-col gap-1 flex-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-md text-label-md">Expenses</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-primary bg-secondary-container/20 border-r-4 border-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">target</span>
+<span class="font-label-md text-label-md">Goals</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-md text-label-md">Wallet</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="font-label-md text-label-md">Trends</span>
+</a>
+</div>
+<button class="mb-stack-lg w-full bg-primary text-on-primary-container font-bold py-3 rounded-xl flex items-center justify-center gap-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">add</span>
+            Add Transaction
+        </button>
+<div class="pt-4 border-t border-outline-variant flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-2 rounded-xl text-on-surface-variant hover:bg-surface-variant/30" href="#">
+<span class="material-symbols-outlined text-sm">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-xl text-on-surface-variant hover:bg-surface-variant/30" href="#">
+<span class="material-symbols-outlined text-sm">help</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="pt-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<section class="mb-stack-lg">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-stack-lg">
+<div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface">Metas e Sonhos</h1>
+<p class="text-on-surface-variant mt-1">Planejando o futuro juntos com transparência e foco.</p>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 md:flex-none px-6 py-2 rounded-full border border-outline-variant text-on-surface hover:bg-surface-variant/30 transition-colors font-label-md">Filtrar</button>
+<button class="flex-1 md:flex-none px-6 py-2 rounded-full bg-primary text-on-primary-container font-bold hover:opacity-90 transition-opacity font-label-md">Nova Meta</button>
+</div>
+</div>
+<!-- Goals Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Card 1: Viagem para Europa -->
+<div class="glass-card rounded-xl p-stack-lg flex flex-col justify-between group relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-primary transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+<div>
+<div class="flex justify-between items-start mb-stack-md">
+<div class="w-12 h-12 rounded-xl bg-secondary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">flight</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary bg-primary/10 px-3 py-1 rounded-full">60%</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-2">Viagem para Europa</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-stack-lg">Prazo: Dez 2024</p>
+<div class="space-y-stack-sm mb-stack-lg">
+<div class="flex justify-between text-label-md font-label-md">
+<span class="text-on-surface-variant">Poupado</span>
+<span class="text-primary font-bold">R$ 12.000</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full progress-gradient rounded-full" style="width: 60%"></div>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Faltam R$ 8.000</span>
+<span class="text-on-surface-variant">Meta: R$ 20.000</span>
+</div>
+</div>
+</div>
+<button class="w-full py-3 rounded-xl border border-primary/30 text-primary font-bold hover:bg-primary hover:text-on-primary transition-all active:scale-95">Fazer Aporte</button>
+</div>
+<!-- Card 2: Reserva de Emergência -->
+<div class="glass-card rounded-xl p-stack-lg flex flex-col justify-between group relative overflow-hidden border-t-2 border-t-primary">
+<div>
+<div class="flex justify-between items-start mb-stack-md">
+<div class="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary bg-primary/10 px-3 py-1 rounded-full">70%</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-2">Reserva de Emergência</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-stack-lg">Fundo de Segurança</p>
+<div class="space-y-stack-sm mb-stack-lg">
+<div class="flex justify-between text-label-md font-label-md">
+<span class="text-on-surface-variant">Poupado</span>
+<span class="text-primary font-bold">R$ 35.000</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full progress-gradient rounded-full" style="width: 70%"></div>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Faltam R$ 15.000</span>
+<span class="text-on-surface-variant">Meta: R$ 50.000</span>
+</div>
+</div>
+</div>
+<button class="w-full py-3 rounded-xl bg-primary text-on-primary-container font-bold hover:opacity-90 transition-all active:scale-95">Fazer Aporte</button>
+</div>
+<!-- Card 3: Troca de Carro -->
+<div class="glass-card rounded-xl p-stack-lg flex flex-col justify-between group relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-primary transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+<div>
+<div class="flex justify-between items-start mb-stack-md">
+<div class="w-12 h-12 rounded-xl bg-surface-variant/30 flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-3xl">directions_car</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-variant/30 px-3 py-1 rounded-full">18.7%</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-2">Troca de Carro</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-stack-lg">Longo Prazo</p>
+<div class="space-y-stack-sm mb-stack-lg">
+<div class="flex justify-between text-label-md font-label-md">
+<span class="text-on-surface-variant">Poupado</span>
+<span class="text-primary font-bold">R$ 15.000</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full progress-gradient rounded-full" style="width: 18.7%"></div>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Faltam R$ 65.000</span>
+<span class="text-on-surface-variant">Meta: R$ 80.000</span>
+</div>
+</div>
+</div>
+<button class="w-full py-3 rounded-xl border border-outline-variant text-on-surface hover:border-primary transition-all active:scale-95">Fazer Aporte</button>
+</div>
+</div>
+</section>
+<!-- Insights Bento Grid -->
+<section class="mt-stack-lg grid grid-cols-1 md:grid-cols-4 gap-gutter mb-stack-lg">
+<div class="md:col-span-2 glass-card rounded-xl p-stack-lg flex flex-col justify-center border-l-4 border-l-secondary-container">
+<span class="text-secondary font-label-sm text-label-sm uppercase tracking-widest mb-1">Total em Metas</span>
+<h4 class="text-3xl font-bold text-on-surface">R$ 62.000,00</h4>
+<p class="text-on-surface-variant text-sm mt-2">Crescimento de <span class="text-primary">+12%</span> em relação ao mês anterior.</p>
+</div>
+<div class="md:col-span-2 glass-card rounded-xl p-stack-lg flex items-center gap-gutter overflow-hidden relative">
+<div class="flex-1">
+<h4 class="font-bold text-lg mb-1">Dica de Investimento</h4>
+<p class="text-on-surface-variant text-sm">Com o aporte mensal atual, vocês atingirão a meta da 'Europa' 2 meses antes do previsto.</p>
+</div>
+<div class="w-16 h-16 flex-shrink-0 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-4xl">trending_up</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-safe h-16 bg-surface-container-highest/90 backdrop-blur-lg border-t border-outline-variant md:hidden rounded-t-xl shadow-lg">
+<a class="flex flex-col items-center justify-center text-on-surface-variant tap-highlight-transparent active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant tap-highlight-transparent active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-sm text-label-sm">Expenses</span>
+</a>
+<div class="relative -top-4">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full w-14 h-14 shadow-lg active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">target</span>
+</a>
+</div>
+<a class="flex flex-col items-center justify-center text-on-surface-variant tap-highlight-transparent active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm">Wallet</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant tap-highlight-transparent active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="font-label-sm text-label-sm">Trends</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for button feedback
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-95');
+            });
+            button.addEventListener('mouseleave', () => {
+                button.classList.remove('scale-95');
+            });
+        });
+
+        // Background Atmosphere - Subtle light pulses
+        const body = document.body;
+        const pulse = document.createElement('div');
+        pulse.className = 'fixed inset-0 pointer-events-none z-[-1] opacity-20';
+        pulse.style.background = 'radial-gradient(circle at 80% 20%, #10b981 0%, transparent 40%)';
+        body.appendChild(pulse);
+    </script>
+</body></html>

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(51, 65, 85, 1);
+        }
+        .mint-glow {
+            box-shadow: 0 0 40px rgba(78, 222, 163, 0.15);
+        }
+        input[type=range] {
+            -webkit-appearance: none;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 8px;
+            cursor: pointer;
+            background: #334155;
+            border-radius: 4px;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #4edea3;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -6px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#00422b",
+                        "secondary": "#adc6ff",
+                        "on-primary-fixed-variant": "#005236",
+                        "primary-fixed": "#6ffbbe",
+                        "surface-container-high": "#1c2b3c",
+                        "surface-tint": "#4edea3",
+                        "on-secondary": "#002e6a",
+                        "on-primary-fixed": "#002113",
+                        "background": "#051424",
+                        "tertiary-fixed": "#e9ddff",
+                        "surface-dim": "#051424",
+                        "tertiary-container": "#b090ff",
+                        "secondary-container": "#0566d9",
+                        "surface-container": "#122131",
+                        "secondary-fixed": "#d8e2ff",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-error": "#690005",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed-dim": "#d0bcff",
+                        "primary-fixed-dim": "#4edea3",
+                        "primary": "#4edea3",
+                        "surface": "#051424",
+                        "outline": "#86948a",
+                        "inverse-primary": "#006c49",
+                        "outline-variant": "#3c4a42",
+                        "inverse-on-surface": "#233143",
+                        "surface-bright": "#2c3a4c",
+                        "surface-container-low": "#0d1c2d",
+                        "on-secondary-container": "#e6ecff",
+                        "inverse-surface": "#d4e4fa",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#3c0091",
+                        "on-tertiary-fixed-variant": "#5516be",
+                        "on-secondary-fixed": "#001a42",
+                        "tertiary": "#d0bcff",
+                        "primary-container": "#10b981",
+                        "surface-variant": "#273647",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-tertiary-container": "#4600a7",
+                        "on-surface-variant": "#bbcabf",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed": "#23005c",
+                        "on-primary": "#003824",
+                        "on-background": "#d4e4fa",
+                        "surface-container-lowest": "#010f1f",
+                        "on-surface": "#d4e4fa",
+                        "surface-container-highest": "#273647"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "stack-sm": "8px",
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "stack-md": "16px",
+                        "gutter": "24px",
+                        "stack-lg": "32px",
+                        "margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-sm": ["JetBrains Mono"],
+                        "display-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["JetBrains Mono"],
+                        "display-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface-container/80 dark:bg-surface-container/80 backdrop-blur-xl border-b border-outline-variant">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md font-bold text-primary">SharedClarity</span>
+</div>
+<div class="hidden md:flex items-center gap-stack-lg">
+<nav class="flex gap-8">
+<a class="text-on-surface-variant font-body-md hover:bg-surface-variant/50 transition-colors cursor-pointer" href="#">Home</a>
+<a class="text-on-surface-variant font-body-md hover:bg-surface-variant/50 transition-colors cursor-pointer" href="#">Expenses</a>
+<a class="text-on-surface-variant font-body-md hover:bg-surface-variant/50 transition-colors cursor-pointer" href="#">Goals</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">Trends</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" data-icon="settings">settings</span>
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Close up profile portraits of a young diverse couple, high-quality digital photography with soft studio lighting. They are smiling warmly, conveying a sense of partnership and shared financial success. The background is a clean, neutral slate blue that complements the dark mode UI design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiLbnJ48CQ_MwZbJjSnVz8weTv0pDEdwQGTQpV2MuAl1Ov4sDoXYqaF3og27NFaVTsi4bPgcg1-n-XyBdKwsXFBvuMZZAi1Vj9NAByFT_csNP6gP7YbTobr5y5PMj_fhIc_O5ovXDEmc-eOybhWObXcDOTqClYF5m8JWfyjbOG0KtpcTlMk3_hKZmktGxfpozHegUJI7RXA--hxlcr5TxWHV3He1gXXOwXm8fI_EQBdJpc4Y1zBPOg"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar (Desktop Only) -->
+<aside class="fixed left-0 top-0 h-full hidden md:flex flex-col p-4 w-64 bg-surface-container-low dark:bg-surface-container-low border-r border-outline-variant z-40 pt-20">
+<div class="flex flex-col gap-2 mb-8">
+<h2 class="text-primary font-headline-md font-bold">Our Wealth</h2>
+<p class="text-on-surface-variant text-label-md font-label-md">Shared Clarity</p>
+</div>
+<nav class="flex flex-col gap-2 flex-grow">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/30 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-md font-label-md">Home</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/30 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="text-label-md font-label-md">Expenses</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/30 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="target">target</span>
+<span class="text-label-md font-label-md">Goals</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/30 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="text-label-md font-label-md">Wallet</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-primary bg-secondary-container/20 border-r-4 border-primary rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+<span class="text-label-md font-label-md">Trends</span>
+</a>
+</nav>
+<button class="bg-primary text-on-primary font-bold py-3 px-4 rounded-xl mb-4 transition-transform active:scale-95">
+            Add Transaction
+        </button>
+<div class="flex flex-col gap-2 border-t border-outline-variant pt-4">
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="text-label-md font-label-md">Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 pt-20 pb-24 px-margin-mobile md:px-margin-desktop min-h-screen">
+<div class="max-w-container-max mx-auto space-y-gutter">
+<!-- Page Header -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface">Análise e Projeções</h1>
+<p class="text-on-surface-variant font-body-lg">Simule o futuro do seu patrimônio compartilhado.</p>
+</div>
+<div class="flex gap-2 p-1 bg-surface-container-lowest rounded-full border border-outline-variant">
+<button class="px-6 py-2 rounded-full bg-surface-container-high text-on-surface font-label-md">Cenário A</button>
+<button class="px-6 py-2 rounded-full text-on-surface-variant hover:text-on-surface font-label-md">Cenário B</button>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Main Projection Chart Area -->
+<section class="lg:col-span-8 glass-panel rounded-xl p-stack-lg relative overflow-hidden group">
+<div class="flex justify-between items-center mb-stack-lg">
+<h3 class="font-headline-md text-headline-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="trending_up">trending_up</span>
+                            Patrimônio Projetado
+                        </h3>
+<div class="flex items-center gap-4 text-label-sm font-label-sm">
+<span class="flex items-center gap-1"><i class="w-3 h-3 bg-primary rounded-full"></i> Esperado</span>
+<span class="flex items-center gap-1"><i class="w-3 h-3 bg-secondary rounded-full"></i> Conservador</span>
+</div>
+</div>
+<!-- Chart Placeholder with custom visual tokens -->
+<div class="h-80 w-full relative flex items-end justify-between px-2 pt-10">
+<!-- Abstract Area Chart Representation -->
+<div class="absolute inset-x-0 bottom-0 h-full overflow-hidden opacity-20 pointer-events-none">
+
+</div>
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-10">
+<div class="border-t border-on-surface"></div>
+<div class="border-t border-on-surface"></div>
+<div class="border-t border-on-surface"></div>
+<div class="border-t border-on-surface"></div>
+<div class="border-t border-on-surface"></div>
+</div>
+<!-- Data Points & Labels (Faux Data) -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="h-16 w-1 bg-primary/20 rounded-full mb-2"></div>
+<span class="text-label-sm font-label-sm opacity-60">Hoje</span>
+<span class="text-primary font-bold">R$ 45k</span>
+</div>
+<div class="relative z-10 flex flex-col items-center translate-y-[-10px]">
+<div class="h-24 w-1 bg-primary/40 rounded-full mb-2"></div>
+<span class="text-label-sm font-label-sm opacity-60">5 anos</span>
+<span class="text-primary font-bold">R$ 180k</span>
+</div>
+<div class="relative z-10 flex flex-col items-center translate-y-[-40px]">
+<div class="h-40 w-1 bg-primary/60 rounded-full mb-2"></div>
+<span class="text-label-sm font-label-sm opacity-60">10 anos</span>
+<span class="text-primary font-bold">R$ 540k</span>
+</div>
+<div class="relative z-10 flex flex-col items-center translate-y-[-80px]">
+<div class="h-64 w-1 bg-primary rounded-full mb-2 shadow-[0_0_15px_rgba(78,222,163,0.5)]"></div>
+<span class="text-label-sm font-label-sm opacity-60">20 anos</span>
+<span class="text-primary font-bold">R$ 2.4M</span>
+</div>
+</div>
+</section>
+<!-- Interactive Simulators -->
+<aside class="lg:col-span-4 flex flex-col gap-gutter">
+<div class="glass-panel rounded-xl p-stack-lg space-y-stack-lg">
+<h3 class="font-headline-md text-headline-md">Simulador</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<label class="text-label-md font-label-md text-on-surface-variant">Aporte Mensal Adicional</label>
+<span class="text-primary font-label-sm" id="aporte-val">R$ 1.500</span>
+</div>
+<input class="w-full" id="aporte-range" max="5000" min="0" type="range" value="1500"/>
+<div class="flex justify-between text-label-sm opacity-40">
+<span>R$ 0</span>
+<span>R$ 5.000</span>
+</div>
+</div>
+<div class="space-y-4 pt-4">
+<div class="flex justify-between items-center">
+<label class="text-label-md font-label-md text-on-surface-variant">Rentabilidade Estimada</label>
+<span class="text-secondary font-label-sm" id="rent-val">8.5% a.a.</span>
+</div>
+<input class="w-full" id="rent-range" max="15" min="5" step="0.1" type="range" value="8.5"/>
+<div class="flex justify-between text-label-sm opacity-40">
+<span>5%</span>
+<span>15%</span>
+</div>
+</div>
+<button class="w-full py-4 mt-4 bg-surface-container-highest border border-primary/30 text-primary rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+                            Otimizar Cenário
+                        </button>
+</div>
+<!-- AI Insights Mini-Card -->
+<div class="bg-primary/10 border border-primary/20 rounded-xl p-stack-md flex gap-4 items-start mint-glow">
+<span class="material-symbols-outlined text-primary shrink-0" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+<p class="text-label-md font-body-md leading-relaxed">
+<strong class="text-primary">Dica Pro:</strong> Aumentar o aporte em apenas <span class="underline decoration-primary">R$ 300</span> reduz sua independência financeira em 14 meses.
+                        </p>
+</div>
+</aside>
+<!-- AI Detailed Insights -->
+<section class="lg:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="glass-panel p-stack-lg rounded-xl border-t-2 border-t-primary hover:translate-y-[-4px] transition-transform duration-300">
+<div class="flex items-center gap-3 mb-4">
+<div class="bg-primary/20 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary" data-icon="restaurant">restaurant</span>
+</div>
+<span class="font-headline-md text-headline-md">Alerta Delivery</span>
+</div>
+<p class="text-on-surface-variant font-body-md">Insight: Vocês gastaram <span class="text-error font-bold">15% a mais</span> com Delivery este mês.</p>
+<p class="mt-4 text-on-surface font-body-md bg-surface-container-highest/50 p-3 rounded-lg border border-outline-variant">
+                            Reduzir R$ 200 aqui aceleraria a meta <span class="text-primary font-bold">Europa</span> em 2 meses.
+                        </p>
+</div>
+<div class="glass-panel p-stack-lg rounded-xl border-t-2 border-t-secondary hover:translate-y-[-4px] transition-transform duration-300">
+<div class="flex items-center gap-3 mb-4">
+<div class="bg-secondary/20 p-2 rounded-lg">
+<span class="material-symbols-outlined text-secondary" data-icon="savings">savings</span>
+</div>
+<span class="font-headline-md text-headline-md">Reserva de Emergência</span>
+</div>
+<p class="text-on-surface-variant font-body-md">Vocês atingiram <span class="text-secondary font-bold">92%</span> da reserva ideal de 6 meses.</p>
+<p class="mt-4 text-on-surface font-body-md bg-surface-container-highest/50 p-3 rounded-lg border border-outline-variant">
+                            Faltam apenas R$ 1.250 para liberar capital para investimentos de maior risco.
+                        </p>
+</div>
+<div class="glass-panel p-stack-lg rounded-xl border-t-2 border-t-tertiary hover:translate-y-[-4px] transition-transform duration-300">
+<div class="flex items-center gap-3 mb-4">
+<div class="bg-tertiary/20 p-2 rounded-lg">
+<span class="material-symbols-outlined text-tertiary" data-icon="account_balance">account_balance</span>
+</div>
+<span class="font-headline-md text-headline-md">Otimização Fiscal</span>
+</div>
+<p class="text-on-surface-variant font-body-md">Considerem migrar parte da renda fixa para um <span class="text-tertiary font-bold">VGBL</span>.</p>
+<p class="mt-4 text-on-surface font-body-md bg-surface-container-highest/50 p-3 rounded-lg border border-outline-variant">
+                            Economia estimada de <span class="text-tertiary font-bold">R$ 840/ano</span> em impostos diferidos para o casal.
+                        </p>
+</div>
+</section>
+<!-- Comparative Goals Matrix -->
+<section class="lg:col-span-12 glass-panel rounded-xl overflow-hidden">
+<div class="p-stack-lg border-b border-outline-variant bg-surface-container-high/30">
+<h3 class="font-headline-md text-headline-md">Rastreamento de Metas vs. Projeção</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-lowest/50 text-label-md font-label-md uppercase tracking-wider text-on-surface-variant">
+<tr>
+<th class="px-gutter py-4">Meta</th>
+<th class="px-gutter py-4">Prazo</th>
+<th class="px-gutter py-4">Progresso</th>
+<th class="px-gutter py-4">Status Projetado</th>
+<th class="px-gutter py-4 text-right">Ação Recom.</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-variant/20 transition-colors">
+<td class="px-gutter py-6 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Cinematic shot of the Eiffel Tower at sunset with golden hour lighting, symbolizing a luxury European vacation goal. High resolution, professional travel photography with a warm, aspirational mood, fitting perfectly within a premium financial planning application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDomWWWkE10p0fcToY0xB3_jkUqfDCMrCLyfvHssdD9WgH9BDdzNoyW9oGPNkmn_BELMf5BJkyEv5WYf0iQfjrjAuCu0TVvIdWnM7DUmBaEQxEG9epPhLgJ3ZPBcIYNXlB8ax2tCYXp4y0GAfczhvvhsIkxM14r1rxG-hnuLPM5zC-4PXXyAmUSI0IrZGzkRENfN1hvhKlsyVX0TOmM6DOYwlZ2OakqYr_lA8a00nU-sQ5sD36M93Ez"/>
+</div>
+<span class="font-bold">Viagem Europa</span>
+</td>
+<td class="px-gutter py-6">24 meses</td>
+<td class="px-gutter py-6">
+<div class="w-full bg-surface-container rounded-full h-2">
+<div class="bg-gradient-to-r from-secondary to-primary h-2 rounded-full" style="width: 65%;"></div>
+</div>
+<span class="text-label-sm mt-1 inline-block">65% concluído</span>
+</td>
+<td class="px-gutter py-6">
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-label-sm">No Prazo</span>
+</td>
+<td class="px-gutter py-6 text-right">
+<button class="text-primary hover:underline font-label-md">Manter</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-variant/20 transition-colors">
+<td class="px-gutter py-6 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Architectural photography of a modern minimalist house interior with large glass windows and natural sunlight streaming in. Soft shadows, clean lines, representing the dream of home ownership. Professional architectural style with high-end finishings, matching a sophisticated financial app's aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwNhJdol8KhjwDCPyCHJiqvUQ324B3a1h_ywV-XsRCOptaKhrnNVKcMZUfJSf3MI792G2ot2DDJKhEMVRJNrPLxm_LZFQ425BZEdwwwbs3QMvU4Rve46hgGoFlNM2j5pg5uUx8DrUkAOrPnecxrcr9i_W-JWOT2vXEFGXCEy0R6mgDE_KwtaoaciZP6U7WVI4jLyXK3yqgNKkjXBFPOBm079EsmFRu3MvpgmIgL9gTiH5u-p6uR5GE"/>
+</div>
+<span class="font-bold">Casa Própria</span>
+</td>
+<td class="px-gutter py-6">120 meses</td>
+<td class="px-gutter py-6">
+<div class="w-full bg-surface-container rounded-full h-2">
+<div class="bg-gradient-to-r from-secondary to-primary h-2 rounded-full" style="width: 12%;"></div>
+</div>
+<span class="text-label-sm mt-1 inline-block">12% concluído</span>
+</td>
+<td class="px-gutter py-6">
+<span class="bg-error/10 text-error px-3 py-1 rounded-full text-label-sm">Atrasado</span>
+</td>
+<td class="px-gutter py-6 text-right">
+<button class="text-secondary hover:underline font-label-md">Reajustar</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-safe h-16 bg-surface-container-highest/90 dark:bg-surface-container-highest/90 backdrop-blur-lg border-t border-outline-variant shadow-lg md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm-mobile">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-sm text-label-sm-mobile">Expenses</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="target">target</span>
+<span class="font-label-sm text-label-sm-mobile">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm-mobile">Wallet</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+<span class="font-label-sm text-label-sm-mobile">Trends</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions for Sliders
+        const aporteRange = document.getElementById('aporte-range');
+        const aporteVal = document.getElementById('aporte-val');
+        const rentRange = document.getElementById('rent-range');
+        const rentVal = document.getElementById('rent-val');
+
+        aporteRange.addEventListener('input', (e) => {
+            const val = parseInt(e.target.value).toLocaleString('pt-BR');
+            aporteVal.textContent = `R$ ${val}`;
+        });
+
+        rentRange.addEventListener('input', (e) => {
+            rentVal.textContent = `${e.target.value}% a.a.`;
+        });
+
+        // Simple interactive feedback on cards
+        document.querySelectorAll('.glass-panel').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.borderColor = 'rgba(78, 222, 163, 0.4)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.borderColor = 'rgba(51, 65, 85, 1)';
+            });
+        });
+    </script>
+</body></html>
